@@ -1,0 +1,75 @@
+the Google API does provide a method for
+submitting history and keeping the
+context of a thread but this is actually
+a little bit deceiving and I would say
+the API is not really ready for that
+sort of thread use case basically with
+the Google API you can start a chat
+provide some history and then submit
+additional messages but as you’ll notice
+this chat object is inside of the memory
+of the program that you’re running which
+means that if your user’s message
+arrives to another server it’s going to
+have no knowledge of this chat and there
+are no chat or conversation IDs so
+there’s no way to attach that message to
+the correct chat unless you have one
+single server running and processing all
+of your conversations this becomes even
+more infeasible if you’re using a
+serverless architecture like Cloud
+functions to process all of these
+messages because every time you invoke a
+new Cloud function there’s absolutely no
+guarantee that your code knows about all
+of the chats that are ongoing I would
+say that this method is really only
+useful for passing history in a
+structured way so if you have all of the
+messages from a particular thread you
+could create this history object and
+start a new chat but I would basically
+do that every single message you get I
+would just retrieve all of the messages
+and start a new chat also you’ll notice
+that there is no assistant ID or or any
+sort of system prompt and that is
+because the Gemini API simply doesn’t
+have those Concepts every single prompt
+is going to contain all of the
+information so if you want to make some
+sort of specialized bot that’s going to
+process user messages and handle them in
+a certain way based on your system
+instructions you’re going to have to
+take your instructions and then add the
+user’s message after your instructions
+so that you have one string prompt this
+is similar to what we used to have to do
+with the open AI API maybe a year ago or
+so system prompts allow you to control
+the behavior of your Bot so I think
+they’re a really powerful feature and I
+hope we get that with the Gemini API
+soon since Gemini is supposed to be
+really good at coding let’s go ahead and
+ask it some coding problems write
+JavaScript code that answers the meaning
+of life in the universe looks like it
+created a random generator which is
+pretty good 42 is in there of course is
+the Top Choice let’s see if we can get
+Gemini to help Google write a better API
+
+for Gemini one thing I will say is that
+this API is fast like it responds very
+quickly compared to open AI that will be
+interesting to watch as it over time all
+right so it looks like it made some
+pretty good assumptions about the chat
+schema and here we go we got some
+different end points overall this code
+looks pretty good so you can copy this
+over into your IDE it’s actually quite a
+bit faster than open AI so I think it
